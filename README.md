@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/cncf/strimzi/_apis/build/status/kafka-env-var-config-provider?branchName=main)](https://dev.azure.com/cncf/strimzi/_build/latest?definitionId=32&branchName=main)
+[![Build Status](https://dev.azure.com/cncf/strimzi/_apis/build/status/kafka-env-var-config-provider?branchName=main)](https://dev.azure.com/cncf/strimzi/_build/latest?definitionId=37&branchName=main)
 [![GitHub release](https://img.shields.io/github/release/strimzi/kafka-env-var-config-provider.svg)](https://github.com/strimzi/kafka-env-var-config-provider/releases/latest)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.strimzi/kafka-env-var-config-provider/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.strimzi/kafka-env-var-config-provider)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -58,9 +58,9 @@ Following example shows how to use it to get database password from environment 
         # ...
     ```
 
-## Adding the Kubernetes Configuration Provider to Apache Kafka clients
+## Adding the EnvVar Configuration Provider to Apache Kafka clients
 
-You can add Kubernetes Configuration Provider as any other Java dependency using Maven or any other build tool.
+You can add EnvVar Configuration Provider as any other Java dependency using Maven or any other build tool.
 For example:
 
 ```xml
@@ -85,7 +85,7 @@ config.providers=env
 config.providers.env.class=io.strimzi.kafka.EnvVarConfigProvider
 ```
 
-Once you initialize it, you can use it to load data from Kubernetes.
+Once you initialize it, you can use it to load data from environment variables.
 For example:
 ```properties
 option=${env:MY_ENV_VAR}
