@@ -7,7 +7,7 @@
 # EnvVar Configuration Provider for Apache Kafka
 
 Apache Kafka supports pluggable configuration providers which can load configuration data from external sources.
-The configuration providers in this repo can be used to load data from environment variables.
+The configuration provider in this repo can be used to load data from environment variables.
 It can be used in all Kafka components and does not depend on the other Strimzi components. 
 So you could, for example, use it with your producer or consumer applications even if you don't use the Strimzi operators to provide your Kafka cluster.
 One of the example use-cases is to load certificates or JAAS configuration from environment variables mapped from Kubernetes Secrets.
@@ -16,9 +16,9 @@ One of the example use-cases is to load certificates or JAAS configuration from 
 
 From Strimzi Kafka Operators release 0.25.0, the EnvVar Configuration Provider is included in all the Kafka deployments.
 You can use it for example with Kafka Connect and Kafka Connect connectors.
-Following example shows how to use it to get database password from environment variable in the connector configuration:
+The following example shows how to use it to get a database password from an environment variable in the connector configuration:
 
-1) Deploy Kafka Connect, enable the EnvVar Configuration Provider and map database password to environment variable:
+1) Deploy Kafka Connect, enable the EnvVar Configuration Provider and map database password to the `DB_PASSWORD` environment variable:
     ```yaml
     apiVersion: kafka.strimzi.io/v1beta2
     kind: KafkaConnect
@@ -78,7 +78,7 @@ To add EnvVar Configuration Provider to your own Apache Kafka server distributio
 
 ## Using the configuration provider
 
-First, you need to initializer the configuration provider.
+First, you need to initialize the configuration provider.
 
 ```properties
 config.providers=env
