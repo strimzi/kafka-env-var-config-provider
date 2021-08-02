@@ -27,7 +27,6 @@ public class EnvVarConfigProvider implements ConfigProvider {
      */
     public EnvVarConfigProvider() {
         this.envVars = System.getenv();
-        LOG.info("Creating EnvVar config provider with system env vars");
     }
 
     /**
@@ -38,7 +37,6 @@ public class EnvVarConfigProvider implements ConfigProvider {
      */
     /*test*/ EnvVarConfigProvider(Map<String, String> envVars) {
         this.envVars = envVars;
-        LOG.info("Creating EnvVar config provider with provided env vars");
     }
 
     @Override
@@ -48,24 +46,13 @@ public class EnvVarConfigProvider implements ConfigProvider {
 
     @Override
     public ConfigData get(String path) {
-        LOG.info("Getting all env vars");
         return new ConfigData(envVars);
     }
 
     @Override
     public ConfigData get(String path, Set<String> keys) {
-        Map<String, String> vars = new HashMap<>(keys.size());
-
-        LOG.info("Getting {} env vars", keys);
-
-        for (String key : keys) {
-            if (envVars.containsKey(key))   {
-                vars.put(key, envVars.get(key));
-            } else {
-                LOG.warn("Environment variable {} not found", key);
-            }
-        }
-
+        Map<String, String> vars = new HashMap(envVars);
+        vars.keySet().retainAll(keys);
         return new ConfigData(vars);
     }
 
