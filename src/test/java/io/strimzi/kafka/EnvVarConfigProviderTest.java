@@ -14,10 +14,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 import static java.util.Collections.emptyMap;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EnvVarConfigProviderTest {
     private static ConfigProvider configProvider;
@@ -78,5 +80,21 @@ public class EnvVarConfigProviderTest {
         Map<String, String> data = config.data();
 
         assertThat(data.size(), is(0));
+    }
+
+    @Test
+    public void testServiceLoaderDiscovery() {
+        ServiceLoader<ConfigProvider> serviceLoader = ServiceLoader.load(ConfigProvider.class);
+
+        boolean discovered = false;
+
+        for (ConfigProvider service : serviceLoader)    {
+            System.out.println(service.getClass());
+            if (service instanceof EnvVarConfigProvider) {
+                discovered = true;
+            }
+        }
+
+        assertTrue(discovered);
     }
 }
