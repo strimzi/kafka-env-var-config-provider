@@ -51,7 +51,7 @@ public class EnvVarConfigProvider implements ConfigProvider {
 
     @Override
     public ConfigData get(String path, Set<String> keys) {
-        Map<String, String> vars = new HashMap(envVars);
+        Map<String, String> vars = new HashMap<>(envVars);
         vars.keySet().retainAll(keys);
         return new ConfigData(vars);
     }
