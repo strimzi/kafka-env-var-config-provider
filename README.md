@@ -8,7 +8,7 @@
 
 This project is now deprecated as since Kafka 3.5.0, Kafka has a built-in EnvVar Configuration Provider. 
 
-To migrate from Strimzi provider to Kafka's, you just need to change the class to `org.apache.kafka.common.config.provider.EnvVarConfigProvider`.
+To migrate from Strimzi provider to Kafka's, you need to change the class to `org.apache.kafka.common.config.provider.EnvVarConfigProvider`.
 
 For example:
 
@@ -30,7 +30,7 @@ config:
   # ...
 ```
 
-
+If you use Strimzi's EnvVar Configuration Provider in client applications, they also need to be updated to use Kafka's implementation. Kafka's EnvVar Configuration Provider, `org.apache.kafka.common.config.provider.EnvVarConfigProvider`, is included in the `kafka-clients` JAR from 3.5.0.
 
 # EnvVar Configuration Provider for Apache Kafka®
 
