@@ -4,6 +4,34 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Twitter Follow](https://img.shields.io/twitter/follow/strimziio?style=social)](https://twitter.com/strimziio)
 
+# Deprecation notice
+
+This project is now deprecated as since Kafka 3.5.0, Kafka has a built-in EnvVar Configuration Provider. 
+
+To migrate from Strimzi provider to Kafka's, you need to change the class to `org.apache.kafka.common.config.provider.EnvVarConfigProvider`.
+
+For example:
+
+```yaml
+config:
+  # ...
+  config.providers: env
+  config.providers.env.class: io.strimzi.kafka.EnvVarConfigProvider
+  # ...
+```
+
+becomes
+
+```yaml
+config:
+  # ...
+  config.providers: env
+  config.providers.env.class: org.apache.kafka.common.config.provider.EnvVarConfigProvider
+  # ...
+```
+
+If you use Strimzi's EnvVar Configuration Provider in client applications, they also need to be updated to use Kafka's implementation. Kafka's EnvVar Configuration Provider, `org.apache.kafka.common.config.provider.EnvVarConfigProvider`, is included in the `kafka-clients` JAR from 3.5.0.
+
 # EnvVar Configuration Provider for Apache Kafka®
 
 [Apache Kafka®](https://kafka.apache.org) supports pluggable configuration providers which can load configuration data from external sources.
