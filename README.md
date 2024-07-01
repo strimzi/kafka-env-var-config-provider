@@ -6,7 +6,7 @@
 
 # Deprecation notice
 
-This project is now deprecated as since Kafka 3.5.0, Kafka has a built-in EnvVar Configuration Provider. 
+This project is now deprecated as since Kafka 3.5.0, Kafka implemented a built-in EnvVar Configuration Provider with [KIP-887](https://cwiki.apache.org/confluence/display/KAFKA/KIP-887%3A+Add+ConfigProvider+to+make+use+of+environment+variables). 
 
 To migrate from Strimzi provider to Kafka's, you need to change the class to `org.apache.kafka.common.config.provider.EnvVarConfigProvider`.
 
